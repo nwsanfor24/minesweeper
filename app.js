@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const grid = document.querySelector("grid");
+  const grid = document.querySelector(".grid");
   const flagsLeft = document.querySelector("#flags-left");
   const result = document.querySelector("#result");
   let width = 10;
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       //normal click
       square.addEventListener("click", function (e) {
-        this.click(square);
+        click(square);
       });
 
       //cntrl and left click
@@ -133,50 +133,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       if (currentId > 0 && !isLeftEdge) {
-        const newId = squares[parseInt(currentId) + 1 - width].id;
-
+        const newId = squares[parseInt(currentId) - 1].id;
+        //const newId = parseInt(currentId) - 1   ....refactor
         const newSquare = document.getElementById(newId);
         click(newSquare);
       }
       if (currentId > 9 && !isRightEdge) {
         const newId = squares[parseInt(currentId) + 1 - width].id;
-
+        //const newId = parseInt(currentId) +1 -width   ....refactor
         const newSquare = document.getElementById(newId);
         click(newSquare);
       }
       if (currentId > 10) {
         const newId = squares[parseInt(currentId - width)].id;
-
+        //const newId = parseInt(currentId) -width   ....refactor
         const newSquare = document.getElementById(newId);
         click(newSquare);
       }
       if (currentId > 11 && !isLeftEdge) {
         const newId = squares[parseInt(currentId) - 1 - width].id;
-
+        //const newId = parseInt(currentId) -1 -width   ....refactor
         const newSquare = document.getElementById(newId);
         click(newSquare);
       }
       if (currentId < 98 && !isRightEdge) {
         const newId = squares[parseInt(currentId) + 1].id;
-
+        //const newId = parseInt(currentId) +1   ....refactor
         const newSquare = document.getElementById(newId);
         click(newSquare);
       }
       if (currentId < 90 && !isLeftEdge) {
         const newId = squares[parseInt(currentId) - 1 + width].id;
-
+        //const newId = parseInt(currentId) -1 +width   ....refactor
         const newSquare = document.getElementById(newId);
         click(newSquare);
       }
       if (currentId < 88 && !isRightEdge) {
         const newId = squares[parseInt(currentId) + 1 + width].id;
-
+        //const newId = parseInt(currentId) +1 +width   ....refactor
         const newSquare = document.getElementById(newId);
         click(newSquare);
       }
       if (currentId < 89) {
         const newId = squares[parseInt(currentId) + width].id;
-
+        //const newId = parseInt(currentId) +width   ....refactor
         const newSquare = document.getElementById(newId);
         click(newSquare);
       }
@@ -200,6 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //check for win
   function checkForWin() {
+    ///simplified win argument
     let matches = 0;
 
     for (let i = 0; i < squares.length; i++) {
